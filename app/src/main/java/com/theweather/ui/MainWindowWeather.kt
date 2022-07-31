@@ -8,7 +8,6 @@ import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,7 +39,7 @@ class MainWindowWeather : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = MainWindowWeatherFragmentBinding.inflate(inflater, container, false)
         inputMethodManager =
             requireActivity().getSystemService(AppCompatActivity.INPUT_METHOD_SERVICE) as InputMethodManager?
@@ -61,7 +60,7 @@ class MainWindowWeather : Fragment() {
         binding.recyclerSearch.layoutManager = LinearLayoutManager(requireContext())
         binding.weatherDays.adapter = daysAdapter
         binding.weatherDays.layoutManager = LinearLayoutManager(requireContext())
-        binding.searchText.doOnTextChanged { text, start, before, count ->
+        binding.searchText.doOnTextChanged { text, _, _, _ ->
             viewModel.onQueryTextChange(text.toString())
         }
         binding.searchButton.setOnClickListener {
