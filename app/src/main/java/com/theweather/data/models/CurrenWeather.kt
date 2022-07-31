@@ -1,7 +1,7 @@
-package com.theweather.data
+package com.theweather.data.models
 
 data class CurrenWeather(
-    val weathercode: String,
+    val weathercode: Int,
     val windspeed: String,
     val time: String,
     val winddirection: String,

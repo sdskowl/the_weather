@@ -1,20 +1,18 @@
 package com.theweather.ui
 
 
-import android.location.Address
+import android.content.res.Resources
 import android.util.Log
-import android.widget.SearchView
 import androidx.lifecycle.*
-import com.theweather.data.City
 import com.theweather.data.DataSource
+import com.theweather.data.models.City
 import com.theweather.data.models.ModelWeather
 import io.realm.kotlin.notifications.InitialResults
 import io.realm.kotlin.notifications.ResultsChange
 import io.realm.kotlin.notifications.UpdatedResults
 import kotlinx.coroutines.launch
 
-class MainWindowWeatherViewModel(private val dataSource: DataSource) : ViewModel(),
-    SearchView.OnQueryTextListener {
+class MainWindowWeatherViewModel(private val dataSource: DataSource) : ViewModel() {
 
     private val _variantCitiesSearch = MutableLiveData<List<City>>()
     val variantCitiesSearch: LiveData<List<City>> = _variantCitiesSearch
@@ -26,14 +24,22 @@ class MainWindowWeatherViewModel(private val dataSource: DataSource) : ViewModel
             dataSource.getCity().asFlow().collect { results: ResultsChange<ModelWeather> ->
                 when (results) {
                     is InitialResults<ModelWeather> -> {
-                        if(!results.list.isNullOrEmpty()){
+
+                        if (!results.list.isEmpty()) {
+                            val result = results.list.first()
                             _currentCity.postValue(results.list.first())
-                            dataSource.updateTemperatureWithRealm(results.list.first())
+                            dataSource.updateTemperature(
+                                result.currentcity,
+                                result.latitude,
+                                result.longitude
+                            )
                         }
+
 
                     }
                     is UpdatedResults<ModelWeather> -> {
-                        if(!results.list.isNullOrEmpty()){
+                        if (!results.list.isEmpty()) {
+
                             _currentCity.postValue(results.list.first())
                         }
 
@@ -43,46 +49,42 @@ class MainWindowWeatherViewModel(private val dataSource: DataSource) : ViewModel
         }
     }
 
+    fun updateTemperature(city: String, latitude: String, longitude: String) {
 
-    fun changeCity(city: City) {
         viewModelScope.launch {
-            dataSource.changeCity(city)
+            dataSource.updateTemperature(
+                city,
+                latitude,
+                longitude
+            )
         }
-    }
-    fun updateWithGeoData(city: Address?){
-        viewModelScope.launch {
-            dataSource.updateWithGeoData(city)
-        }
+
     }
 
-    override fun onQueryTextSubmit(query: String?): Boolean {
-        return true
-    }
-
-    override fun onQueryTextChange(newText: String?): Boolean {
-        newText?.let {
+    fun onQueryTextChange(newText: String?) {
+        if (!newText.isNullOrEmpty()) {
             viewModelScope.launch {
                 val weather = dataSource.serviceGeoWeather.findCity(newText)
-                Log.d("weather", weather.body().toString())
                 weather.body()?.let { cities ->
                     _variantCitiesSearch.postValue(cities.results)
                 }
             }
+        } else {
+            _variantCitiesSearch.postValue(listOf())
         }
-        return true
     }
 
 
 }
 
-class MainWindowWeatherViewModelFactory : ViewModelProvider.Factory {
+class MainWindowWeatherViewModelFactory(val resources: Resources, val packageName: String) :
+    ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MainWindowWeatherViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
             return MainWindowWeatherViewModel(
-                DataSource.getDataSource()
-
+                DataSource.getDataSource(resources, packageName)
             ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")

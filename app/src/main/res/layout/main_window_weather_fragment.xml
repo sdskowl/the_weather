@@ -2,69 +2,128 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout2"
+    android:id="@+id/mainLayout"
+    style="@style/MainLayoutStyle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.MainWindowWeather">
 
-    <SearchView
-        android:id="@+id/searchView"
+    <LinearLayout
+        android:id="@+id/searchBar"
+        style="@style/SearchLinerLayout"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    </SearchView>
+        <EditText
+            android:id="@+id/searchText"
+            style="@style/SearchEditText"
+            android:layout_width="match_parent"
+            android:layout_height="28dp"
+            android:layout_weight="6"
+            android:autofillHints=""
+            tools:ignore="LabelFor,TouchTargetSizeCheck" />
+
+        <ImageView
+            android:id="@+id/searchButton"
+            style="@style/SearchStartButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/searchCancelButton"
+            style="@style/SearchStopButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="ContentDescription" />
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layoutManager="LinearLayoutManager"
+        android:elevation="90dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+        app:layout_constraintTop_toBottomOf="@+id/searchBar" />
+
 
     <TextView
         android:id="@+id/city"
+        style="@style/CityNameStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="--"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+        app:layout_constraintTop_toBottomOf="@+id/lineTop"
+        tools:hint="--" />
+
     <TextView
         android:id="@+id/temperature"
+        style="@style/TemperatureStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="--"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city"/>
+        app:layout_constraintTop_toBottomOf="@+id/city"
+        tools:hint="--" />
+
+    <ImageView
+        android:id="@+id/icWeather"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/temperature"
+        tools:ignore="ContentDescription"
+        tools:src="@drawable/ic_cloudy" />
+
     <TextView
-        android:id="@+id/weathercode"
+        android:id="@+id/weatherCode"
+        style="@style/WeatherCodeStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="--"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/temperature"/>
+        app:layout_constraintTop_toBottomOf="@+id/icWeather"
+        tools:hint="--" />
+
     <TextView
-        android:id="@+id/windspeed"
+        android:id="@+id/windSpeed"
+        style="@style/WindSpeedStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="--"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/weathercode"/>
-    <TextView
-        android:id="@+id/timeUpdate"
+        app:layout_constraintTop_toBottomOf="@+id/weatherCode"
+        tools:hint="--" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/weatherDays"
+        android:layout_marginTop="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toTopOf="@+id/lineBottom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/windSpeed" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/lineTop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="--"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/windspeed"/>
+        app:layout_constraintGuide_percent="0.15"
+        android:orientation="horizontal" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/lineBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.97"
+        android:orientation="horizontal" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

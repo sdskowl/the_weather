@@ -3,6 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/sdsko/AndroidStudioProjects/the_weather/app/src/main/res/drawable/bg_white_rounded.xml" value="0.169" />
+        <entry key="..\:/Users/sdsko/AndroidStudioProjects/the_weather/app/src/main/res/drawable/border.xml" value="0.12" />
+        <entry key="..\:/Users/sdsko/AndroidStudioProjects/the_weather/app/src/main/res/drawable/click_search_suggestion.xml" value="0.2" />
+        <entry key="..\:/Users/sdsko/AndroidStudioProjects/the_weather/app/src/main/res/drawable/ic_close.xml" value="0.2" />
+        <entry key="..\:/Users/sdsko/AndroidStudioProjects/the_weather/app/src/main/res/drawable/ic_cloudy_day_1.xml" value="0.121" />
+        <entry key="..\:/Users/sdsko/AndroidStudioProjects/the_weather/app/src/main/res/drawable/ic_cloudy_day_2.xml" value="0.169" />
+        <entry key="..\:/Users/sdsko/AndroidStudioProjects/the_weather/app/src/main/res/drawable/ic_cloudy_day_3.xml" value="0.169" />
+        <entry key="..\:/Users/sdsko/AndroidStudioProjects/the_weather/app/src/main/res/drawable/ic_day.xml" value="0.121" />
+        <entry key="..\:/Users/sdsko/AndroidStudioProjects/the_weather/app/src/main/res/drawable/ic_night.xml" value="0.121" />
+        <entry key="..\:/Users/sdsko/AndroidStudioProjects/the_weather/app/src/main/res/drawable/ic_search.xml" value="0.2" />
+        <entry key="..\:/Users/sdsko/AndroidStudioProjects/the_weather/app/src/main/res/drawable/ic_snowy_6.xml" value="0.121" />
+        <entry key="..\:/Users/sdsko/AndroidStudioProjects/the_weather/app/src/main/res/drawable/morning.xml" value="0.12" />
+        <entry key="..\:/Users/sdsko/AndroidStudioProjects/the_weather/app/src/main/res/layout/activity_main.xml" value="0.20697463768115942" />
+        <entry key="..\:/Users/sdsko/AndroidStudioProjects/the_weather/app/src/main/res/layout/main_window_weather_fragment.xml" value="0.20697463768115942" />
+        <entry key="..\:/Users/sdsko/AndroidStudioProjects/the_weather/app/src/main/res/layout/main_window_weather_recycler_search.xml" value="0.536" />
+        <entry key="..\:/Users/sdsko/AndroidStudioProjects/the_weather/app/src/main/res/layout/weather_days_recycler.xml" value="0.24895833333333334" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/main_window_weather_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/main_window_weather_recycler_search.xml" value="0.10729166666666666" />

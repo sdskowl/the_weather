@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="suggestion">18sp</dimen>
+    <dimen name="input">14sp</dimen>
+    <dimen name="mainPaddingStartEnd">15dp</dimen>
+    <dimen name="mainPaddingTopBottom">10dp</dimen>
+    <dimen name="searchPaddingStartEnd">15dp</dimen>
+    <dimen name="city">24sp</dimen>
+    <dimen name="temperature">56sp</dimen>
+    <dimen name="weatherCode">18sp</dimen>
+    <dimen name="windSpeed">16sp</dimen>
+</resources>

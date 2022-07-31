@@ -1,12 +1,13 @@
 package com.theweather.ui
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.theweather.data.City
+import com.theweather.data.models.City
 import com.theweather.databinding.MainWindowWeatherRecyclerSearchBinding
 
 class SearchRecyclerCitiesAdapter(private val onItemClicked: (city: City) -> Unit) :
@@ -34,7 +35,7 @@ class SearchRecyclerCitiesAdapter(private val onItemClicked: (city: City) -> Uni
         }
 
         override fun areContentsTheSame(oldItem: City, newItem: City): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.id == newItem.id && oldItem.name == newItem.name
         }
     }
 }
@@ -46,16 +47,16 @@ class SearchRecyclerCitiesViewHolder(
     private var currentCity: City? = null
 
     init {
-        binding.textViewCity.setOnClickListener { view ->
+        binding.searchSuggestions.setOnClickListener { cityView ->
             currentCity?.let {
                 onItemClicked(it)
             }
         }
     }
 
+    @SuppressLint("SetTextI18n")
     fun bind(city: City) {
         currentCity = city
-        Log.d("weather", "binding ${city}")
-        binding.textViewCity.text = "${city.name} ${city?.admin1} ${city?.country}"
+        binding.citySugg.text = "${city.name} ${city.admin1} ${city.country}"
     }
 }
